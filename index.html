@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+      var map, trafficManager;
+      var trafficVisible = false;
+      function GetMap() {
+        map = new Microsoft.Maps.Map("#myMap", {});
+        //Load traffic module.
+        Microsoft.Maps.loadModule("Microsoft.Maps.Traffic", function () {
+          //Create an instance of the traffic manager and bind to map.
+          trafficManager = new Microsoft.Maps.Traffic.TrafficManager(map);
+        });
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AidbMqH-4aw8WtKRi1AiaUiKB2oINHowUPfVhKoskZx4fL6I5YQwVU3H2oKUoE_Q"
+      async
+      defer
+    ></script>
+  </head>
+  <body>
+    <div
+      id="myMap"
+      style="position: relative; width: 600px; height: 400px"
+    ></div>
+    <button id="toggleTrafficButton">Toggle Traffic</button>
+
+    <script type="text/javascript">
+      document
+        .getElementById("toggleTrafficButton")
+        .addEventListener("click", function () {
+          if (trafficVisible) {
+            trafficManager.hide();
+            trafficVisible = false;
+          } else {
+            trafficManager.show();
+            trafficVisible = true;
+          }
+        });
+    </script>
+  </body>
+</html>
